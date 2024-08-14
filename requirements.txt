@@ -1,3 +1,2 @@
 gTTS==2.2.4
 pygame==2.6.0
-onnx-tf==1.10.0
