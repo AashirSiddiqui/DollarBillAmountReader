@@ -15,11 +15,11 @@ toMake = [
     ["1dollar_F.mp4","One dollar bill, front."],
     ["1dollar_B.mp4","One dollar bill, back."],
     ["5dollar_B.mp4","Five dollar bill, back."],
-    ["5dollar_F.mp4","Five dollar bill, back."]
+    ["5dollar_F.mp4","Five dollar bill, front."]
           ]
 
-tts = gTTS('hello')
-tts.save('./mp4s/hello.mp3')
+for i in toMake:
+    tts = gTTS(i[1])
+    tts.save(opt.targetdir+"/"+i[0])
 
-tts = gTTS('hello')
-tts.save('hello.mp3')
+print("MP4 creations successful, created:\n", toMake)
