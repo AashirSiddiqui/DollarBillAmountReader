@@ -40,6 +40,7 @@ parser.add_argument("--model", type=str, default="models/bill-reader/model_best.
 parser.add_argument("--labels", type=str, default="models/bill-reader/labels.txt", help="class labels of models to use")
 parser.add_argument("--topK", type=int, default=1, help="show the topK number of class predictions (default: 1)")
 parser.add_argument("--delaysec", type=int, default=3, help="the # of seconds in between each camera capture and prediction (default: 3)")
+parser.add_argument("--req_threshold", type=int, default=50, help="the confidence threshold required for a prediction to be considered (default: 50)")
 
 try:
 	args = parser.parse_known_args()[0]
@@ -81,7 +82,10 @@ while True:
         classLabel = net.GetClassLabel(classID)
         confidence *= 100.0
 
-        print(f"imagenet:  {confidence:05.2f}% class #{classID} ({classLabel})")
+        if confidence >= args.req_threshold:
+            print(f"imagenet:  {confidence:05.2f}% class #{classID} ({classLabel})")
+        else:
+            print(f"unknown, confidence too low. guess: {confidence:05.2f}% {classLabel} (class {classID})")
 
     # print out performance info
     net.PrintProfilerTimes()

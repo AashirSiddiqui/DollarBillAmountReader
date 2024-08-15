@@ -9,6 +9,7 @@ parser = argparse.ArgumentParser() # argparse can be used to code simple cli app
 parser.add_argument("filename", type=str, help="filename of the image to process")
 parser.add_argument("--model", type=str, default="models/bill-reader/model_best.onnx", help="model to use, by default: models/bill-reader/model_best.onnx")
 parser.add_argument("--labels", type=str, default="models/bill-reader/labels.txt", help="labels to use, by default: models/bill-reader/labels.txt")
+parser.add_argument("--req_threshold", type=int, default=50, help="the confidence threshold required for a prediction to be considered (default: 50)")
 opt = parser.parse_args() # opt = Namespace for cli operation (e.g: Namespace(filename='filename', network='googlenet'))
 # print(opt)
 
